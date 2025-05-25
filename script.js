@@ -148,4 +148,72 @@ document.addEventListener('DOMContentLoaded', function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
-}); 
+});
+
+// Carrello
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+function addToCart(title, price) {
+    const existing = cart.find(item => item.title === title && item.price === price);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ title, price, quantity: 1 });
+    }
+    saveCart();
+}
+
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const title = this.getAttribute('data-title');
+        const price = parseFloat(this.getAttribute('data-price'));
+        addToCart(title, price);
+    });
+});
+
+// Finestra modale del carrello
+function renderCartModal() {
+    let html = '<h5>Carrello</h5>';
+    if (cart.length === 0) {
+        html += '<p>Il carrello è vuoto</p>';
+    } else {
+        html += '<ul class="list-group mb-3">';
+        cart.forEach((item, idx) => {
+            html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>${item.title} <small>x${item.quantity}</small></span>
+                <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                <button class="btn btn-sm btn-danger remove-item" data-idx="${idx}">&times;</button>
+            </li>`;
+        });
+        html += '</ul>';
+        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        html += `<div class="mb-2">Totale: <strong>€${total.toFixed(2)}</strong></div>`;
+        html += '<button class="btn btn-success btn-block" id="checkout-btn">Procedi all’ordine</button>';
+    }
+    document.getElementById('cart-modal-body').innerHTML = html;
+    // Rimozione prodotto dal carrello
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', function() {
+            cart.splice(this.getAttribute('data-idx'), 1);
+            saveCart();
+            renderCartModal();
+        });
+    });
+}
+
+document.getElementById('cart-icon').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.location.href = 'ordine.html';
+});
+
+updateCartCount(); 

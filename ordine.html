@@ -161,12 +161,7 @@
             <div class="col-md-4">
                 <div class="order-summary">
                     <h4>Riepilogo Ordine</h4>
-                    <div class="order-details">
-                        <p><strong>Prodotto:</strong> <span id="productTitle"></span></p>
-                        <p><strong>Tipo:</strong> <span id="productType"></span></p>
-                        <p class="price">Prezzo: €<span id="productPrice"></span></p>
-                    </div>
-                    <!-- Messaggio informativo -->
+                    <div class="order-details" id="cart-summary"></div>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i> Dopo l'invio dell'ordine, riceverai una email di conferma con i dettagli per il pagamento.
                     </div>
@@ -184,23 +179,14 @@
                     <h5>Contatti</h5>
                     <p>Email: babenkogeorge61@gmail.com</p>
                 </div>
-                <!-- Sezione social media -->
-                <div class="col-md-4">
-                    <h5>Seguici</h5>
-                    <div class="social-links">
-                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
                 <!-- Sezione orari -->
-                <div class="col-md-4 offset-md-4">
+                <div class="col-md-4 ml-auto text-right">
                     <h5>Orari</h5>
                     <p>Lun-Ven: 9:00 - 18:00</p>
                 </div>
             </div>
             <hr class="bg-light">
-            <p class="mb-0">&copy; 2025 Libreria Online. Voi non avete i diritti riservati.</p>
+            <p class="mb-0">&copy; 2025 Libreria Online. Voi non avete i diritti riservati .</p>
         </div>
     </footer>
 
@@ -213,16 +199,33 @@
 
     <!-- Script per la gestione dell'ordine -->
     <script>
-        // Recupero dei parametri dall'URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type');
-        const title = urlParams.get('title');
-        const price = urlParams.get('price');
+        // Carica il carrello da localStorage
+        function renderCartSummary() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let html = '';
+            if (cart.length === 0) {
+                html = '<p>Il carrello è vuoto.</p>';
+            } else {
+                html += '<ul class="list-group mb-3">';
+                cart.forEach(item => {
+                    html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>${item.title} <small>x${item.quantity}</small></span>
+                        <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                    </li>`;
+                });
+                html += '</ul>';
+                const totale = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                html += `<div class="mb-2">Totale: <strong>€${totale.toFixed(2)}</strong></div>`;
+            }
+            document.getElementById('cart-summary').innerHTML = html;
+        }
+        renderCartSummary();
 
-        // Aggiornamento del riepilogo dell'ordine
-        document.getElementById('productTitle').textContent = title;
-        document.getElementById('productType').textContent = type === 'libro' ? 'Libro' : 'Vinile';
-        document.getElementById('productPrice').textContent = price;
+        // Svuota il carrello dopo l'invio dell'ordine
+        const orderForm = document.getElementById('orderForm');
+        orderForm.addEventListener('submit', function() {
+            localStorage.removeItem('cart');
+        });
     </script>
 </body>
 </html> 
