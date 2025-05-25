@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Meta tags per la configurazione base della pagina -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordine - Libreria Online</title>
+
+    <!-- Collegamenti ai fogli di stile esterni -->
+    <!-- Bootstrap 4 per il layout responsive -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Foglio di stile personalizzato -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts per i caratteri tipografici -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Stili specifici per la pagina dell'ordine -->
+    <style>
+        /* Stile per il riepilogo dell'ordine */
+        .order-summary {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        /* Stile per il titolo del riepilogo */
+        .order-summary h4 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        /* Stile per i dettagli dell'ordine */
+        .order-details {
+            margin-bottom: 20px;
+        }
+        .order-details p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        /* Stile per il prezzo */
+        .order-details .price {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #27ae60;
+        }
+        /* Stile per le etichette dei campi del form */
+        .form-group label {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        /* Stile per il focus dei campi input */
+        .form-control:focus {
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.15);
+        }
+        /* Stile per il pulsante di invio */
+        .btn-submit {
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Stile per il link di ritorno alla home */
+        .back-link {
+            color: #2c3e50;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: #34495e;
+            text-decoration: none;
+        }
+        .back-link i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra di navigazione -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <!-- Logo e nome del sito -->
+            <a class="navbar-brand" href="index.html"><i class="fas fa-book-open"></i> Libreria Online</a>
+            <!-- Pulsante hamburger per dispositivi mobili -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menu di navigazione -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#libri">Libri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#vinili">Vinili</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenuto principale -->
+    <div class="container my-5">
+        <!-- Link per tornare alla home -->
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Torna alla Home
+        </a>
+
+        <div class="row">
+            <!-- Form dell'ordine -->
+            <div class="col-md-8">
+                <h2 class="mb-4">Completa il tuo ordine</h2>
+                <form id="orderForm" action="https://formspree.io/f/myzwqypw" method="POST">
+                    <!-- Campo nome e cognome -->
+                    <div class="form-group">
+                        <label for="name">Nome e Cognome *</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <!-- Campo email -->
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <!-- Campo telefono -->
+                    <div class="form-group">
+                        <label for="phone">Telefono *</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <!-- Campo indirizzo -->
+                    <div class="form-group">
+                        <label for="address">Indirizzo di spedizione *</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <!-- Campo note aggiuntive -->
+                    <div class="form-group">
+                        <label for="notes">Note aggiuntive</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <!-- Pulsante di invio -->
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-paper-plane"></i> Invia Ordine
+                    </button>
+                </form>
+            </div>
+
+            <!-- Riepilogo dell'ordine -->
+            <div class="col-md-4">
+                <div class="order-summary">
+                    <h4>Riepilogo Ordine</h4>
+                    <div class="order-details">
+                        <p><strong>Prodotto:</strong> <span id="productTitle"></span></p>
+                        <p><strong>Tipo:</strong> <span id="productType"></span></p>
+                        <p class="price">Prezzo: €<span id="productPrice"></span></p>
+                    </div>
+                    <!-- Messaggio informativo -->
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Dopo l'invio dell'ordine, riceverai una email di conferma con i dettagli per il pagamento.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="row">
+                <!-- Sezione contatti -->
+                <div class="col-md-4">
+                    <h5>Contatti</h5>
+                    <p>Email: babenkogeorge61@gmail.com</p>
+                </div>
+                <!-- Sezione social media -->
+                <div class="col-md-4">
+                    <h5>Seguici</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <!-- Sezione orari -->
+                <div class="col-md-4 offset-md-4">
+                    <h5>Orari</h5>
+                    <p>Lun-Ven: 9:00 - 18:00</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="mb-0">&copy; 2025 Libreria Online. Voi non avete i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Script esterni -->
+    <!-- jQuery e Popper.js per Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script per la gestione dell'ordine -->
+    <script>
+        // Recupero dei parametri dall'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+        const title = urlParams.get('title');
+        const price = urlParams.get('price');
+
+        // Aggiornamento del riepilogo dell'ordine
+        document.getElementById('productTitle').textContent = title;
+        document.getElementById('productType').textContent = type === 'libro' ? 'Libro' : 'Vinile';
+        document.getElementById('productPrice').textContent = price;
+    </script>
+</body>
+</html> 

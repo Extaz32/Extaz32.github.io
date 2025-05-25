@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Meta tags per la configurazione base della pagina -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libreria Online</title>
+
+    <!-- Collegamenti ai fogli di stile esterni -->
+    <!-- Bootstrap 4 per il layout responsive -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Foglio di stile personalizzato -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts per i caratteri tipografici -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra di navigazione principale -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <!-- Logo e nome del sito -->
+            <a class="navbar-brand" href="#"><i class="fas fa-book-open"></i> Libreria Online</a>
+            <!-- Pulsante hamburger per dispositivi mobili -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menu di navigazione -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#libri">Libri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vinili">Vinili</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sezione Hero con immagine di sfondo -->
+    <div class="hero-section text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Benvenuto in Libreria Online</h1>
+            <p class="lead">Scopri e acquista libri e vinili di qualità</p>
+            <!-- Pulsanti di navigazione rapida -->
+            <div class="hero-buttons mt-4">
+                <a href="#libri" class="btn btn-light btn-lg mr-3">Esplora Libri</a>
+                <a href="#vinili" class="btn btn-outline-light btn-lg">Scopri Vinili</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenuto principale -->
+    <div class="container my-5">
+        <!-- Sezione Libri -->
+        <section id="libri" class="mb-5">
+            <h2 class="text-center mb-4">Libri in evidenza</h2>
+            <div class="row">
+                <!-- Card del libro: Il Nome della Rosa -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/il-nome-della-rosa.jpg" class="card-img-top" alt="Il Nome della Rosa">
+                        <div class="card-body">
+                            <h5 class="card-title">Il Nome della Rosa</h5>
+                            <p class="card-text">Autore: Umberto Eco</p>
+                            <p class="card-text">Prezzo: €22.90</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=Il%20Nome%20della%20Rosa&price=22.90" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del libro: La Divina Commedia -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/la-divina-commedia.jpeg" class="card-img-top" alt="La Divina Commedia">
+                        <div class="card-body">
+                            <h5 class="card-title">La Divina Commedia</h5>
+                            <p class="card-text">Autore: Dante Alighieri</p>
+                            <p class="card-text">Prezzo: €25.00</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=La%20Divina%20Commedia&price=25.00" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del libro: Il Gattopardo -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/il-gattopardo.jpg" class="card-img-top" alt="Il Gattopardo">
+                        <div class="card-body">
+                            <h5 class="card-title">Il Gattopardo</h5>
+                            <p class="card-text">Autore: Giuseppe Tomasi di Lampedusa</p>
+                            <p class="card-text">Prezzo: €18.50</p>
+                            <div class="rating">★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=Il%20Gattopardo&price=18.50" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del libro: Se questo è un uomo -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/se-questo-e-un-uomo.jpg" class="card-img-top" alt="Se questo è un uomo">
+                        <div class="card-body">
+                            <h5 class="card-title">Se questo è un uomo</h5>
+                            <p class="card-text">Autore: Primo Levi</p>
+                            <p class="card-text">Prezzo: €15.90</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=Se%20questo%20è%20un%20uomo&price=15.90" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del libro: Il barone rampante -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/l-barone-rampante.jpg" class="card-img-top" alt="Il barone rampante">
+                        <div class="card-body">
+                            <h5 class="card-title">Il barone rampante</h5>
+                            <p class="card-text">Autore: Italo Calvino</p>
+                            <p class="card-text">Prezzo: €16.90</p>
+                            <div class="rating">★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=Il%20barone%20rampante&price=16.90" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del libro: Novecento -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/novecento.jpg" class="card-img-top" alt="Novecento">
+                        <div class="card-body">
+                            <h5 class="card-title">Novecento</h5>
+                            <p class="card-text">Autore: Alessandro Baricco</p>
+                            <p class="card-text">Prezzo: €14.50</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=libro&title=Novecento&price=14.50" class="btn btn-primary btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Vinili -->
+        <section id="vinili" class="mb-5">
+            <h2 class="text-center mb-4">Vinili in evidenza</h2>
+            <div class="row">
+                <!-- Card del vinile: The Dark Side of the Moon -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/dark-side-of-the-moon.png" class="card-img-top" alt="The Dark Side of the Moon">
+                        <div class="card-body">
+                            <h5 class="card-title">The Dark Side of the Moon</h5>
+                            <p class="card-text">Artista: Pink Floyd</p>
+                            <p class="card-text">Anno: 1973</p>
+                            <p class="card-text">Prezzo: €35.00</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=The%20Dark%20Side%20of%20the%20Moon&price=35.00" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del vinile: Thriller -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/thriller.jpg" class="card-img-top" alt="Thriller">
+                        <div class="card-body">
+                            <h5 class="card-title">Thriller</h5>
+                            <p class="card-text">Artista: Michael Jackson</p>
+                            <p class="card-text">Anno: 1982</p>
+                            <p class="card-text">Prezzo: €30.00</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=Thriller&price=30.00" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del vinile: Back in Black -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/back-in-black.png" class="card-img-top" alt="Back in Black">
+                        <div class="card-body">
+                            <h5 class="card-title">Back in Black</h5>
+                            <p class="card-text">Artista: AC/DC</p>
+                            <p class="card-text">Anno: 1980</p>
+                            <p class="card-text">Prezzo: €28.90</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=Back%20in%20Black&price=28.90" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del vinile: Abbey Road -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/abbey-road.jpg" class="card-img-top" alt="Abbey Road">
+                        <div class="card-body">
+                            <h5 class="card-title">Abbey Road</h5>
+                            <p class="card-text">Artista: The Beatles</p>
+                            <p class="card-text">Anno: 1969</p>
+                            <p class="card-text">Prezzo: €40.00</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=Abbey%20Road&price=40.00" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del vinile: Rumours -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/rumours.jpg" class="card-img-top" alt="Rumours">
+                        <div class="card-body">
+                            <h5 class="card-title">Rumours</h5>
+                            <p class="card-text">Artista: Fleetwood Mac</p>
+                            <p class="card-text">Anno: 1977</p>
+                            <p class="card-text">Prezzo: €32.50</p>
+                            <div class="rating">★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=Rumours&price=32.50" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card del vinile: Purple Rain -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="img/purple-rain.jpg" class="card-img-top" alt="Purple Rain">
+                        <div class="card-body">
+                            <h5 class="card-title">Purple Rain</h5>
+                            <p class="card-text">Artista: Prince</p>
+                            <p class="card-text">Anno: 1984</p>
+                            <p class="card-text">Prezzo: €29.90</p>
+                            <div class="rating">★★★★★</div>
+                            <!-- Pulsanti di azione -->
+                            <div class="card-actions mt-3">
+                                <a href="ordine.html?type=vinile&title=Purple%20Rain&price=29.90" class="btn btn-success btn-block">
+                                    <i class="fas fa-shopping-cart"></i> Acquista
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal per informazioni sull'acquisto -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Informazioni per l'Acquisto</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Per acquistare questo articolo, contattaci via email:</p>
+                    <div class="text-center">
+                        <a href="mailto:babenkogeorge61@gmail.com" class="btn btn-primary btn-lg">
+                            <i class="fas fa-envelope"></i> babenkogeorge61@gmail.com
+                        </a>
+                    </div>
+                    <p class="mt-3 text-muted">Ti risponderemo entro 24 ore con i dettagli dell'acquisto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer con informazioni di contatto e social -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="row">
+                <!-- Sezione contatti -->
+                <div class="col-md-4">
+                    <h5>Contatti</h5>
+                    <p>Email: babenkogeorge61@gmail.com</p>
+                </div>
+                <!-- Sezione orari -->
+                <div class="col-md-4 offset-md-4">
+                    <h5>Orari</h5>
+                    <p>Lun-Ven: 9:00 - 18:00</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="mb-0">&copy; 2025 Libreria Online. Voi non avete i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Script esterni -->
+    <!-- jQuery e Popper.js per Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Script personalizzato/100% Chat -->
+    <script src="script.js"></script>
+</body>
+</html>
