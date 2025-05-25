@@ -199,7 +199,22 @@
 
     <!-- Script per la gestione dell'ordine -->
     <script>
-        // Carica il carrello da localStorage
+        // Маппинг названия товара на картинку (добавьте сюда все товары)
+        const productImages = {
+            'Il Nome della Rosa': 'img/il-nome-della-rosa.jpg',
+            'La Divina Commedia': 'img/la-divina-commedia.jpeg',
+            'Il Gattopardo': 'img/il-gattopardo.jpg',
+            'Se questo è un uomo': 'img/se-questo-e-un-uomo.jpg',
+            'Il barone rampante': 'img/l-barone-rampante.jpg',
+            'Novecento': 'img/novecento.jpg',
+            'The Dark Side of the Moon': 'img/dark-side-of-the-moon.png',
+            'Thriller': 'img/thriller.jpg',
+            'Back in Black': 'img/back-in-black.png',
+            'Abbey Road': 'img/abbey-road.jpg',
+            'Rumours': 'img/rumours.jpg',
+            'Purple Rain': 'img/purple-rain.jpg'
+        };
+
         function renderCartSummary() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let html = '';
@@ -207,10 +222,20 @@
                 html = '<p>Il carrello è vuoto.</p>';
             } else {
                 html += '<ul class="list-group mb-3">';
-                cart.forEach(item => {
-                    html += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>${item.title} <small>x${item.quantity}</small></span>
-                        <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                cart.forEach((item, idx) => {
+                    const imgSrc = productImages[item.title] || 'img/default.png';
+                    html += `<li class="list-group-item d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img src="${imgSrc}" alt="${item.title}" style="width:40px;height:40px;object-fit:cover;border-radius:4px;margin-right:10px;">
+                            <span>${item.title}</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-sm btn-outline-secondary mr-1 qty-minus" data-idx="${idx}">-</button>
+                            <span class="mx-1">${item.quantity}</span>
+                            <button type="button" class="btn btn-sm btn-outline-secondary ml-1 qty-plus" data-idx="${idx}">+</button>
+                        </div>
+                        <span style="min-width:70px;text-align:right;">€${(item.price * item.quantity).toFixed(2)}</span>
+                        <button type="button" class="btn btn-sm btn-danger ml-2 remove-item" data-idx="${idx}" title="Rimuovi"><i class="fas fa-trash"></i></button>
                     </li>`;
                 });
                 html += '</ul>';
@@ -218,6 +243,36 @@
                 html += `<div class="mb-2">Totale: <strong>€${totale.toFixed(2)}</strong></div>`;
             }
             document.getElementById('cart-summary').innerHTML = html;
+
+            // Обработчики для + и -
+            document.querySelectorAll('.qty-plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    cart[idx].quantity++;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartSummary();
+                });
+            });
+            document.querySelectorAll('.qty-minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    cart[idx].quantity--;
+                    if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartSummary();
+                });
+            });
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    cart.splice(idx, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartSummary();
+                });
+            });
         }
         renderCartSummary();
 
