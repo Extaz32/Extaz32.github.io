@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showCartToast(title) {
         const toastBody = document.getElementById('cart-toast-body');
         if (toastBody) {
-            toastBody.textContent = `"${title}" aggiunto al carrello!`;
+            toastBody.innerHTML = `<span>\"${title}\" aggiunto al carrello!</span> <button id='go-to-cart-btn' class='btn btn-light btn-sm ml-3' style='white-space:nowrap;'>Vai al carrello</button>`;
         }
         const toastEl = $('#cart-toast');
         if (toastEl.length && toastEl.toast) {
@@ -186,6 +186,35 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'ordine.html';
         });
     }
+
+    // Обработчик для кнопки 'Vai al carrello' в toast
+    document.body.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'go-to-cart-btn') {
+            window.location.href = 'ordine.html';
+        }
+    });
+
+    // При нажатии 'Acquista' на карточке товара — корзина очищается, добавляется только выбранный товар, переход на ordine.html
+    document.body.addEventListener('click', function(e) {
+        if (e.target.closest('.purchase-btn')) {
+            e.preventDefault();
+            const btn = e.target.closest('.purchase-btn');
+            // Получаем данные товара
+            let card = btn.closest('.card');
+            let title = card.querySelector('.card-title')?.textContent?.trim();
+            let priceText = card.querySelector('.card-text')?.textContent || '';
+            let price = 0;
+            // Ищем цену в тексте
+            let match = priceText.match(/([\d,.]+)/);
+            if (match) price = parseFloat(match[1].replace(',', '.'));
+            if (title && price) {
+                // Очищаем корзину и добавляем только выбранный товар
+                let cart = [{ title, price, quantity: 1 }];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                window.location.href = 'ordine.html';
+            }
+        }
+    }, true);
 
     updateCartCount();
 });
