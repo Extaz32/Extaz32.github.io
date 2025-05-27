@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Mostra la modale di acquisto
     window.showPurchaseModal = function(title, type) {
         const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
         const modalTitle = document.querySelector('#purchaseModal .modal-title');
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     displayBookReviews();
     displayVinylReviews();
 
-    // Initialize all tooltips
+    // Inizializza tutti i tooltip
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
@@ -155,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         saveCart();
     }
 
-    // Показать toast при добавлении товара в корзину (Bootstrap 4)
+    // Mostra toast quando un prodotto viene aggiunto al carrello (Bootstrap 4)
     function showCartToast(title) {
         const toastBody = document.getElementById('cart-toast-body');
         if (toastBody) {
@@ -167,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Делегирование для кнопок 'Aggiungi al carrello'
+    // Delegazione per i pulsanti 'Aggiungi al carrello'
     document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('add-to-cart')) {
             e.preventDefault();
@@ -178,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Переход на ordine.html при клике на корзину
+    // Vai a ordine.html quando si clicca sull'icona del carrello
     const cartIcon = document.getElementById('cart-icon');
     if (cartIcon) {
         cartIcon.addEventListener('click', function(e) {
@@ -187,28 +188,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Обработчик для кнопки 'Vai al carrello' в toast
+    // Gestore per il pulsante 'Vai al carrello' nel toast
     document.body.addEventListener('click', function(e) {
         if (e.target && e.target.id === 'go-to-cart-btn') {
             window.location.href = 'ordine.html';
         }
     });
 
-    // При нажатии 'Acquista' на карточке товара — корзина очищается, добавляется только выбранный товар, переход на ordine.html
+    // Quando si clicca su 'Acquista' nella card del prodotto — il carrello viene svuotato, viene aggiunto solo il prodotto selezionato, si va su ordine.html
     document.body.addEventListener('click', function(e) {
         if (e.target.closest('.purchase-btn')) {
             e.preventDefault();
             const btn = e.target.closest('.purchase-btn');
-            // Получаем данные товара
+            // Ottieni i dati del prodotto
             let card = btn.closest('.card');
             let title = card.querySelector('.card-title')?.textContent?.trim();
             let priceText = card.querySelector('.card-text')?.textContent || '';
             let price = 0;
-            // Ищем цену в тексте
+            // Cerca il prezzo nel testo
             let match = priceText.match(/([\d,.]+)/);
             if (match) price = parseFloat(match[1].replace(',', '.'));
             if (title && price) {
-                // Очищаем корзину и добавляем только выбранный товар
+                // Svuota il carrello e aggiungi solo il prodotto selezionato
                 let cart = [{ title, price, quantity: 1 }];
                 localStorage.setItem('cart', JSON.stringify(cart));
                 window.location.href = 'ordine.html';
@@ -247,4 +248,4 @@ function renderCartModal() {
             renderCartModal();
         });
     });
-} 
+}

@@ -255,7 +255,7 @@ footer hr {
 .card.h-100 {
   display: flex;
   flex-direction: column;
-  height: 520px; /* Можно скорректировать под ваш контент */
+  height: 520px; /* Altezza fissa per le card */
 }
 .card-img-top {
   height: 250px;

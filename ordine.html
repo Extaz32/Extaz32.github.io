@@ -199,7 +199,7 @@
 
     <!-- Script per la gestione dell'ordine -->
     <script>
-        // Маппинг названия товара на картинку (добавьте сюда все товары)
+        // Mappatura del titolo del prodotto all'immagine corrispondente (aggiungi qui tutti i prodotti)
         const productImages = {
             'Il Nome della Rosa': 'img/il-nome-della-rosa.jpg',
             'La Divina Commedia': 'img/la-divina-commedia.jpeg',
@@ -244,7 +244,7 @@
             }
             document.getElementById('cart-summary').innerHTML = html;
 
-            // Обработчики для + и -
+            // Aggiungi gli eventi per i pulsanti di incremento/decremento e rimozione
             document.querySelectorAll('.qty-plus').forEach(btn => {
                 btn.addEventListener('click', function() {
                     let cart = JSON.parse(localStorage.getItem('cart')) || [];
